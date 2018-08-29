@@ -10,8 +10,8 @@ const models = (function() {
       this.color = color;
       this.envWidth = envWidth;
       this.envHeight = envHeight;
-      this.speedLimit = 8;
-      this.velocity = 0.4;
+      this.speedLimit = 6;
+      this.velocity = 0.2;
     }
 
     wallCheck() {
@@ -65,7 +65,10 @@ const models = (function() {
     }
 
     writeText() {
-      const ctx = this.ctx
+      const ctx = this.ctx;
+      ctx.font = '30px monospace';
+      ctx.strokeStyle = 'orange';
+      ctx.strokeText("My Ball", this.canvas.width / 10, 30)
     }
 
     drawBall() {
@@ -92,6 +95,7 @@ const models = (function() {
       const directions = this.getDirections();
       this.ball.changePosition(directions);
       this.drawBall();
+      this.writeText();
     }
 
   }
