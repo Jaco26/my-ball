@@ -1,36 +1,52 @@
 const models = (function() {
 
   class Ball {
-    constructor(x, y, radius, color) {
+    constructor(x, y, radius, color, envWidth, envHeight) {
       this.x = x;
       this.y = y;
       this.dx = 0;
       this.dy = 0;
       this.radius = radius;
       this.color = color;
+      this.envWidth = envWidth;
+      this.envHeight = envHeight;
+      this.speedLimit = 8;
+      this.velocity = 0.4;
     }
 
-    changePosition(directions, speed) {
+    wallCheck() {
+      if (this.x > this.envWidth - this.radius || this.x < 0 + this.radius) {
+        this.dx = -this.dx;
+      } 
+      if (this.y > this.envHeight - this.radius || this.y < 0 + this.radius) {
+        this.dy = -this.dy;
+      }
+    }
+
+    changePosition(directions) {
+      const speedLimit = this.speedLimit;
+      const velocity = this.velocity;
       if (directions.includes('up')) {
-        Math.abs(this.dy) > 4
-          ? this.dy = -4 
-          : this.dy -= speed;
+        this.dy < -speedLimit
+          ? this.dy = -speedLimit
+          : this.dy -= velocity;
       } 
       if (directions.includes('right')) {
-        this.dx > 4
-          ? this.dx = 4
-          : this.dx += speed;
+        this.dx > speedLimit
+          ? this.dx = speedLimit
+          : this.dx += velocity;
       }
       if (directions.includes('down')) {
-        this.dy > 4
-          ? this.dy = 4
-          : this.dy += speed;
+        this.dy > speedLimit
+          ? this.dy = speedLimit
+          : this.dy += velocity;
       }
       if (directions.includes('left')) {
-        Math.abs(this.dx) > 4
-          ? this.dx = -4
-          : this.dx -= speed;
+        this.dx < -speedLimit
+          ? this.dx = -speedLimit
+          : this.dx -= velocity;
       }
+      this.wallCheck();
       this.y += this.dy;
       this.x += this.dx;
     }
@@ -48,8 +64,12 @@ const models = (function() {
       this.ArrowLeft = false;
     }
 
+    writeText() {
+      const ctx = this.ctx
+    }
+
     drawBall() {
-      const ctx = this.ctx;
+      const ctx = this.ctx;      
       const ball = this.ball;
       ctx.beginPath();
       ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
@@ -70,8 +90,7 @@ const models = (function() {
     updatePositions() {      
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       const directions = this.getDirections();
-      const speed = 0.1;      
-      this.ball.changePosition(directions, speed);
+      this.ball.changePosition(directions);
       this.drawBall();
     }
 
