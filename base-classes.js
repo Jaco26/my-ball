@@ -2,8 +2,8 @@
 class Canvas {
   constructor() {
     this.canvas = this.createCanvas();
-    this.cWidth = this.canvas.width;
-    this.cHeight = this.canvas.height;
+    this.envWidth = this.canvas.width;
+    this.envHeight = this.canvas.height;
     this.ctx = this.canvas.getContext('2d');
   }
 
@@ -46,17 +46,51 @@ class Shape {
   }
 }
 
+
 class Ball extends Shape {
   constructor(x, y, radius, color) {
     super(x, y, color);
     this.radius = radius;
   }
+
+  wallDetect({ envWidth, envHeight }) {
+    if (this.x > envWidth - this.radius || this.x < 0 + this.radius) {
+      this.dx = -this.dx;
+    }
+    if (this.y > envHeight - this.radius || this.y < 0 + this.radius) {
+      this.dy = -this.dy;
+    }
+  }
 }
+
 
 class Rect extends Shape {
   constructor(x, y, width, height, color) {
     super(x, y, color);
     this.width = width;
     this.height = height;
+  }
+
+  wallDetect({ envWidth, envHeight }) {
+    if (this.x > envWidth - this.width || this.x < 0 + this.width) {
+      this.dx = -this.dx;
+    }
+    if (this.y > envHeight - this.height || this.y < 0 + this.height) {
+      this.dy = -this.dy;
+    }
+  }
+}
+
+
+class Board extends Canvas {
+  constructor(pieces) {
+    super();
+    this.pieces = pieces;
+  }
+
+  applyRules() {
+    Object.keys(this.pieces).forEach(piece => {
+      piece.rules.forEach(rule => rule(this));
+    });
   }
 }

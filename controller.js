@@ -23,10 +23,21 @@ function activate() {
 
 activate();
 
-// const canvas = new Canvas();
+
+// class Piece1 extends Ball {
+//   constructor(x, y, radius, color) {
+//     super(x, y, radius, color);
+//     this.rules = [
+//       this.wallDetect,
+//     ];
+//   }
+// }
+
+// const canvas = new Board(Piece1, );
+
 
 // const ball = new Ball(200, 500, 50, 'orange');
-// const rect = new Rect(400, 300, 60, 80, 'green')
+// const rect = new Rect(400, 300, 60, 80, 'green');
 
 // canvas.drawBall(ball);
 // canvas.drawRect(rect)
