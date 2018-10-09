@@ -5,27 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Canvas Clock</title>
-  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="margin: 0px;">
   
-  <div class="flex-row">
-    <div class="flex-item">
-      <canvas id="game-canvas" 
-        style="background-color: aliceblue;" 
-        width="900"
-        height="500"
-      ></canvas>
-    </div>
-  </div>
-  
-  <div id="canvas-container">
 
-  </div>
+  <canvas id="game-canvas" style="overflow: hidden;" ></canvas>
+
+
  
-  <script src="base-classes.js"></script>
+  <!-- <script src="base-classes.js"></script>
   <script src="models.js"></script>
-  <script src="controller.js"></script>
+  <script src="controller.js"></script> -->
+
+  <script src="key-bindings.js"></script>
+  <script src="models.js"></script>
+  <script src="main.js"></script>
 
 </body>
 </html>
