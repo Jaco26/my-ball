@@ -9,3 +9,13 @@ document.body.onresize = function() {
   canvas.height = window.innerHeight;
 }
 
+const game = new MODELS.Game(canvas);
+
+game.init()
+
+function main() {
+  game.animate();
+  requestAnimationFrame(main);
+}
+
+main();

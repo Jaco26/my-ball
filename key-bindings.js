@@ -16,16 +16,16 @@ const KEY_BINDINGS = (function() {
         this.arrowDirections.left = true;
       }
   
-      if (key.endsWith('w')) {
+      if (key == 'w') {
         this.letterDirections.up = true;
       }
-      if (key.endsWith('s')) {
+      if (key == 's') {
         this.letterDirections.down = true;
       }
-      if (key.endsWith('d')) {
+      if (key == 'd') {
         this.letterDirections.right = true;
       } 
-      if (key.endsWith('a')) {
+      if (key == 'a') {
         this.letterDirections.left = true;
       }
     });
@@ -45,16 +45,16 @@ const KEY_BINDINGS = (function() {
         this.arrowDirections.left = false;
       }
   
-      if (key.endsWith('w')) {
+      if (key == 'w') {
         this.letterDirections.up = false;
       }
-      if (key.endsWith('s')) {
+      if (key == 's') {
         this.letterDirections.down = false;
       }
-      if (key.endsWith('d')) {
+      if (key == 'd') {
         this.letterDirections.right = false;
       }
-      if (key.endsWith('a')) {
+      if (key == 'a') {
         this.letterDirections.left = false;
       }
     })
